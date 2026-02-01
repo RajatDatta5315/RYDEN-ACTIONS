@@ -1,6 +1,5 @@
 name: RYDEN_REMOTE_EXECUTION
-on: 
-  workflow_dispatch: # Manual trigger button
+on: workflow_dispatch
 
 jobs:
   execute_strategy:
@@ -8,7 +7,6 @@ jobs:
     steps:
       - name: API_HANDSHAKE
         run: |
-          curl -X POST https://YOUR_WORKER_URL.workers.dev/api/v1/x/automate \
+          curl -X POST https://ryden-core.rajatdatta90000.workers.dev/api/v1/x/automate \
           -H "X-RYDEN-APP-KEY: ${{ secrets.RYDEN_APP_KEY }}" \
           -H "Content-Type: application/json"
-
