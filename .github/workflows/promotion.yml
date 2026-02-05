@@ -1,0 +1,25 @@
+name: Ryden Self-Promotion Engine
+
+on:
+  schedule:
+    - cron: '0 * * * *' # Har 1 ghante mein chalega
+  workflow_dispatch: # Manual trigger option
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Execute Promotion Script
+        env:
+          RYDEN_APP_KEY: ${{ secrets.RYDEN_APP_KEY }}
+          RYDEN_APP_SECRET: ${{ secrets.RYDEN_APP_SECRET }}
+          CLERK_USER_ID: ${{ secrets.CLERK_USER_ID }}
+        run: node scripts/promo.js
